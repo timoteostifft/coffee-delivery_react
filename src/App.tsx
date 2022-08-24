@@ -1,9 +1,14 @@
+import { ThemeProvider } from 'styled-components'
+import { defaultTheme } from './styles/themes/default'
+
 function App() {
 
   return (
-    <div>
-      Hello World!
-    </div>
+    <ThemeProvider theme={defaultTheme}>
+      <div>
+        Hello World!
+      </div>
+    </ThemeProvider>
   )
 }
 
