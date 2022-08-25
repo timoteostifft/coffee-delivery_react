@@ -8,7 +8,7 @@ export const HeaderContainer = styled.header`
   padding: 18px 0;
 
   >img {
-    width: 70px;
+    width: 80px;
     height: auto;
   }
 
@@ -17,15 +17,15 @@ export const HeaderContainer = styled.header`
     gap: 1rem;
     
     a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
       background: ${props => props.theme["purple-200"]};
       padding: 8px 8px;
       border-radius: 8px;
 
       gap: 0.6rem;
-
-      display: flex;
-      align-items: center;
-      justify-content: center;
 
       text-decoration: 0;
       color: ${props => props.theme["purple-700"]};
