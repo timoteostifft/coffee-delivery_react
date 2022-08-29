@@ -1,5 +1,6 @@
 import React from 'react';
-import { ProductContainer } from './styles';
+import { CoffeeQuantity, ProductContainer } from './styles';
+import { FaRegTrashAlt as Trash } from 'react-icons/fa'
 
 import base from '../../../../assets/coffees/arabe.svg'
 
@@ -12,8 +13,15 @@ const Product: React.FC = () => {
           Expresso Tradicional
         </h4>
         <nav>
-          <button>DIFERENTE</button>
-          <button>REMOVER</button>
+          <CoffeeQuantity>
+            <button>-</button>
+            <span>1</span>
+            <button>+</button>
+          </CoffeeQuantity>
+          <button>
+            <Trash />
+            REMOVER
+          </button>
         </nav>
       </div>
       <span>
