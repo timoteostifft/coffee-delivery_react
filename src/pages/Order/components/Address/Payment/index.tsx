@@ -1,10 +1,10 @@
 import React from 'react';
 
 import { Header, PaymentContainer } from './styles';
-import money from '../../../../assets/money.svg';
-import credit_card from '../../../../assets/credit_card.svg';
-import debit_card from '../../../../assets/debit_card.svg';
-import cash from '../../../../assets/cash.svg';
+import money from '../../../../../assets/money.svg';
+import credit_card from '../../../../../assets/credit_card.svg';
+import debit_card from '../../../../../assets/debit_card.svg';
+import cash from '../../../../../assets/cash.svg';
 
 
 const Payment: React.FC = () => {

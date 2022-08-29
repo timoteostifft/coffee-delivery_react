@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 
 import { AddressContainer, Card, Header, Title } from './styles';
 import address from '../../../../assets/address.svg'
-import Payment from '../Payment';
+import Payment from './Payment';
 
 const Address: React.FC = () => {
   const { register, handleSubmit, formState: { errors }, watch } = useForm()

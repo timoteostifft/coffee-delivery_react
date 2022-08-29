@@ -2,7 +2,7 @@ import React from 'react';
 import { CoffeeQuantity, ProductContainer } from './styles';
 import { FaRegTrashAlt as Trash } from 'react-icons/fa'
 
-import base from '../../../../assets/coffees/arabe.svg'
+import base from '../../../../../assets/coffees/arabe.svg'
 
 const Product: React.FC = () => {
   return (

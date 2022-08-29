@@ -1,5 +1,5 @@
 import React from 'react';
-import Product from '../Product';
+import Product from './Product';
 import { DescriptionContainer, Card, Title, Selected, Info } from './styles';
 
 const Description: React.FC = () => {
