@@ -50,11 +50,11 @@ export const ProductContainer = styled.div`
 
   >span {
     position: relative;
-    bottom: 16px;
+    bottom: 20px;
     margin-left: auto;
     margin-right: 6px;
     color: ${props => props.theme.text};
-    font-size: 17.8px;
+    font-size: 14.6px;
     font-weight: bold;
   }
 `
