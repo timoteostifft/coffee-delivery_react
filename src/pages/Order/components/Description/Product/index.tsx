@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { CoffeeQuantity, ProductContainer } from './styles';
 import { FaRegTrashAlt as Trash } from 'react-icons/fa'
 import { toBRL } from '../../../../../utils/toBRL';
@@ -9,16 +9,24 @@ interface ProductProps {
     name: string,
     image: string,
     price: number,
-    quantity: number
+    quantity: number,
+    description: string,
+    categories: string[]
   }
 }
 
 const Product: React.FC<ProductProps> = ({ item }) => {
-  const [itemQuantity, setItemQuantity] = useState(item.quantity)
-
-  const { removeItemFromCart } = useContext(CartContext)
+  const { removeItemFromCart, addItemToCart } = useContext(CartContext)
 
   const price = toBRL(item.quantity * item.price)
+
+  function handleIncrementItemQuantity() {
+    const coffee = {
+      ...item,
+      quantity: 1
+    }
+    addItemToCart(coffee)
+  }
 
   return (
     <ProductContainer>
@@ -30,8 +38,8 @@ const Product: React.FC<ProductProps> = ({ item }) => {
         <nav>
           <CoffeeQuantity>
             <button>-</button>
-            <span>{itemQuantity}</span>
-            <button>+</button>
+            <span>{item.quantity}</span>
+            <button onClick={() => handleIncrementItemQuantity()}>+</button>
           </CoffeeQuantity>
           <button onClick={() => removeItemFromCart(item.name)}>
             <Trash />
