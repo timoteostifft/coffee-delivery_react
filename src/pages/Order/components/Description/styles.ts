@@ -67,3 +67,11 @@ export const Info = styled.div`
     margin-top: 0.8rem;
   }
 `
+
+export const Empty = styled.div`
+  height: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`
