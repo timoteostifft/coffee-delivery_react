@@ -16,7 +16,7 @@ interface ProductProps {
 }
 
 const Product: React.FC<ProductProps> = ({ item }) => {
-  const { removeItemFromCart, addItemToCart } = useContext(CartContext)
+  const { removeItemFromCart, addItemToCart, decreaseItemQuantityFromCart } = useContext(CartContext)
 
   const price = toBRL(item.quantity * item.price)
 
@@ -28,6 +28,13 @@ const Product: React.FC<ProductProps> = ({ item }) => {
     addItemToCart(coffee)
   }
 
+  function handleDecreaseItemQuantity() {
+    if (item.quantity > 1) {
+      decreaseItemQuantityFromCart(item.name)
+      return
+    }
+  }
+
   return (
     <ProductContainer>
       <img src={item.image} alt="" />
@@ -37,7 +44,7 @@ const Product: React.FC<ProductProps> = ({ item }) => {
         </h4>
         <nav>
           <CoffeeQuantity>
-            <button>-</button>
+            <button onClick={() => handleDecreaseItemQuantity()}>-</button>
             <span>{item.quantity}</span>
             <button onClick={() => handleIncrementItemQuantity()}>+</button>
           </CoffeeQuantity>
