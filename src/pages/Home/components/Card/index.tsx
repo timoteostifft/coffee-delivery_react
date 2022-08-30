@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 
 import { CardContainer, CardFooter, CoffeeQuantity, CoffeeCategory } from './styles';
 import { HiShoppingCart as Cart } from 'react-icons/hi';
+import { CartContext } from '../../../../contexts/CartContext';
+import { toBRL } from '../../../../utils/toBRL';
 
 interface CardProps {
   coffee: {
@@ -15,10 +17,34 @@ interface CardProps {
 
 const Card: React.FC<CardProps> = ({ coffee }: CardProps) => {
 
-  const amount = new Intl.NumberFormat('pt-BR', {
-    style: 'currency',
-    currency: 'BRL',
-  }).format(coffee.price);
+  const { addItemToCart } = useContext(CartContext)
+
+  const price = toBRL(coffee.price)
+
+  const [quantity, setQuantity] = useState(1)
+
+  function increaseQuantity() {
+    setQuantity(state => {
+      return state + 1
+    })
+  }
+
+  function decreaseQuantity() {
+    if (quantity > 1) {
+      setQuantity(state => {
+        return state - 1
+      })
+    }
+  }
+
+  function handleAddNewItemToCart() {
+    const item = {
+      ...coffee,
+      quantity
+    }
+    addItemToCart(item)
+    setQuantity(1)
+  }
 
   return (
     <CardContainer>
@@ -26,7 +52,7 @@ const Card: React.FC<CardProps> = ({ coffee }: CardProps) => {
       <section>
         {coffee.categories.map(category => {
           return (
-            <CoffeeCategory>{category}</CoffeeCategory>
+            <CoffeeCategory key={category}>{category}</CoffeeCategory>
           )
         })}
       </section>
@@ -35,15 +61,15 @@ const Card: React.FC<CardProps> = ({ coffee }: CardProps) => {
       <p>{coffee.description}</p>
 
       <CardFooter>
-        <span>{amount.slice(0, 2)}
-          <strong>{amount.slice(3)}</strong>
+        <span>{price.slice(0, 2)}
+          <strong>{price.slice(3)}</strong>
         </span>
         <CoffeeQuantity>
-          <button>-</button>
-          <span>1</span>
-          <button>+</button>
+          <button onClick={() => decreaseQuantity()}>-</button>
+          <span>{quantity}</span>
+          <button onClick={() => increaseQuantity()}>+</button>
         </CoffeeQuantity>
-        <button>
+        <button onClick={() => handleAddNewItemToCart()}>
           <Cart />
         </button>
       </CardFooter>
