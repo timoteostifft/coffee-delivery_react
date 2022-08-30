@@ -20,6 +20,9 @@ export const CardContainer = styled.div`
 
     width: 120px;
     height: auto;
+
+    border-radius: 50%;
+    box-shadow: rgba(0, 0, 0, 0.3) 4px 8px 8px 0px;
   }
 
   section {
