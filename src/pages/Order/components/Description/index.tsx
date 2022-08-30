@@ -1,8 +1,22 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { CartContext } from '../../../../contexts/CartContext';
+import { toBRL } from '../../../../utils/toBRL';
 import Product from './Product';
-import { DescriptionContainer, Card, Title, Selected, Info } from './styles';
+import { DescriptionContainer, Card, Title, Selected, Info, Empty } from './styles';
 
 const Description: React.FC = () => {
+  const { cartItems } = useContext(CartContext)
+
+  const deliveryPrice = 3.50
+
+  const productsPrice = cartItems.reduce(
+    (total, item) =>
+      total + (item.price * item.quantity),
+    0
+  )
+
+  const totalPrice = toBRL(productsPrice + deliveryPrice)
+
   return (
     <DescriptionContainer>
       <Title>
@@ -10,40 +24,45 @@ const Description: React.FC = () => {
       </Title>
 
       <Card>
-        <Selected>
-          <Product />
-          <Product />
-          {/* <Product />
-          <Product />
-          <Product />
-          <Product /> */}
-        </Selected>
-        <Info>
-          <div>
-            <span>
-              Total de itens
-            </span>
-            <span>R$ 29,70</span>
-          </div>
-          <div>
-            <span>
-              Entrega
-            </span>
-            <span>R$ 3,50</span>
-          </div>
-          <div>
-            <span>
-              Total
-            </span>
-            <span>
-              R$ 33,20
-            </span>
-          </div>
-        </Info>
-
-        <button>
-          CONFIRMAR PEDIDO
-        </button>
+        {cartItems.length > 0
+          ? <>
+            <Selected>
+              {cartItems.map(item => {
+                return <Product key={item.name} item={item} />
+              })}
+            </Selected>
+            <Info>
+              <div>
+                <span>
+                  Total de itens
+                </span>
+                <span>{toBRL(productsPrice)}</span>
+              </div>
+              <div>
+                <span>
+                  Entrega
+                </span>
+                <span>{toBRL(deliveryPrice)}</span>
+              </div>
+              <div>
+                <span>
+                  Total
+                </span>
+                <span>
+                  {totalPrice}
+                </span>
+              </div>
+            </Info>
+            <button>
+              CONFIRMAR PEDIDO
+            </button>
+          </>
+          : <Empty>
+            <h3>
+              Ainda não há items no carrinho.
+            </h3>
+          </Empty>
+        }
       </Card>
     </DescriptionContainer>
   );
