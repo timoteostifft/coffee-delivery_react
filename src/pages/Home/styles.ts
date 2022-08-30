@@ -1,7 +1,8 @@
 import styled from "styled-components";
 
 export const HomeContainer = styled.main`
-margin-top: 4.4rem;
+  margin-top: 8rem;
+  padding: 0 20px;
 
 h2 {
   margin-bottom: 4rem;

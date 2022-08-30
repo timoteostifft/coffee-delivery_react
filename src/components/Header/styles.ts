@@ -5,7 +5,16 @@ export const HeaderContainer = styled.header`
   align-items: center;
   justify-content: space-between;
 
-  padding: 18px 0;
+  width: 100%;
+  max-width: 1130px;
+  padding: 14px 20px;
+
+  
+  z-index: 1;
+  background: ${props => props.theme.background};
+
+  position: fixed;
+  top: 0;
 
   nav {
     display: flex;
@@ -51,5 +60,4 @@ export const HeaderContainer = styled.header`
       background: ${props => props.theme["yellow-200"]};
     }
   }
-
 `

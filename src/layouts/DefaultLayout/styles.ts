@@ -8,5 +8,6 @@ export const LayoutContainer = styled.div`
   flex-direction: column;
 
   margin: 0 auto;
-  padding: 0 20px;
+  margin-top: 8rm;
+
 `
