@@ -7,14 +7,29 @@ export const HeaderContainer = styled.header`
 
   padding: 18px 0;
 
-  >img {
-    width: 80px;
-    height: auto;
-  }
-
   nav {
     display: flex;
     gap: 1rem;
+
+    >span {
+      background: ${props => props.theme["yellow-500"]};
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1;
+
+      width: 20px;
+      height: 20px;
+      font-size: 12px;
+      border-radius: 50%;
+      color: ${props => props.theme.white};
+      font-weight: bold;
+
+      position: relative;
+      left: 13.8rem;
+      top: -8px;
+    }
     
     a {
       display: flex;
@@ -32,7 +47,7 @@ export const HeaderContainer = styled.header`
       font-size: 14px;
     }
 
-    a:nth-child(2) {
+    a:last-child {
       background: ${props => props.theme["yellow-200"]};
     }
   }
