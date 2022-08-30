@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { CoffeeQuantity, ProductContainer } from './styles';
 import { FaRegTrashAlt as Trash } from 'react-icons/fa'
 import { toBRL } from '../../../../../utils/toBRL';
+import { CartContext } from '../../../../../contexts/CartContext';
 
 interface ProductProps {
   item: {
@@ -14,6 +15,8 @@ interface ProductProps {
 
 const Product: React.FC<ProductProps> = ({ item }) => {
   const [itemQuantity, setItemQuantity] = useState(item.quantity)
+
+  const { removeItemFromCart } = useContext(CartContext)
 
   const price = toBRL(item.quantity * item.price)
 
@@ -30,7 +33,7 @@ const Product: React.FC<ProductProps> = ({ item }) => {
             <span>{itemQuantity}</span>
             <button>+</button>
           </CoffeeQuantity>
-          <button>
+          <button onClick={() => removeItemFromCart(item.name)}>
             <Trash />
             REMOVER
           </button>

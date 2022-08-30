@@ -19,7 +19,6 @@ const Home: React.FC = () => {
             <Card coffee={coffee} key={coffee.name} />
           )
         })}
-        {/* <Card name='Expresso Tradicional' /> */}
       </CardsContainer>
     </HomeContainer>
   );
