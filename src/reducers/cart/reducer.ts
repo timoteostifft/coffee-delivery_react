@@ -42,6 +42,17 @@ export function cartReducer(state: CartState, action: any) {
       })
     }
 
+    case ActionTypes.DECREASE_ITEM_QUANTITY_FROM_CART: {
+      const itemIndex = state.cartItems.findIndex(item => item.name === action.payLoad.name)
+
+      if (itemIndex != -1) {
+        return produce(state, draft => {
+          draft.cartItems[itemIndex].quantity = state.cartItems[itemIndex].quantity - 1
+        })
+      }
+      return state
+    }
+
     default:
       return state
   }
