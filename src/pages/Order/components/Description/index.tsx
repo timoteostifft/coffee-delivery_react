@@ -53,7 +53,7 @@ const Description: React.FC = () => {
                 </span>
               </div>
             </Info>
-            <button>
+            <button type='submit'>
               CONFIRMAR PEDIDO
             </button>
           </>
