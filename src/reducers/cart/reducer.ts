@@ -1,20 +1,22 @@
 import { produce } from 'immer';
 import Coffee from '../../interfaces/Coffee';
+import Order from '../../interfaces/Order';
 
 import { ActionTypes } from './actions';
 
 interface CartState {
   cartItems: Coffee[]
+  finalizedOrders: Order[]
 }
 
-// interface ActionInterface {
-//   type: string,
-//   payLoad: {
-//     item: Coffee | string
-//   }
-// }
+interface ActionInterface {
+  type: string,
+  payLoad: {
+    item: Coffee | string
+  }
+}
 
-export function cartReducer(state: CartState, action: any) {
+export function cartReducer(state: CartState, action: any | ActionInterface) {
   switch (action.type) {
     case ActionTypes.ADD_ITEM_TO_CART: {
       const itemIndex = state.cartItems.findIndex(item => {
@@ -51,6 +53,13 @@ export function cartReducer(state: CartState, action: any) {
         })
       }
       return state
+    }
+
+    case ActionTypes.CREATE_NEW_ORDER: {
+      return produce(state, draft => {
+        draft.finalizedOrders.push(action.payLoad.order)
+        draft.cartItems = []
+      })
     }
 
     default:
