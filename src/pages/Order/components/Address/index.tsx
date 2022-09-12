@@ -1,12 +1,12 @@
 import React from 'react';
-import { useForm } from 'react-hook-form';
+import { useFormContext } from 'react-hook-form';
 
-import { AddressContainer, Card, Header, Title } from './styles';
+import { AddressContainer, Card, Header, Title, ErrorAlert } from './styles';
 import address from '../../../../assets/address.svg'
 import Payment from './Payment';
 
 const Address: React.FC = () => {
-  const { register, handleSubmit, formState: { errors }, watch } = useForm()
+  const { register, formState: { errors } } = useFormContext()
 
   return (
     <AddressContainer>
@@ -27,35 +27,29 @@ const Address: React.FC = () => {
           id='cep'
           placeholder='CEP'
           {...register('cep', {
-            required: true,
-            maxLength: 8,
-            minLength: 8
+            required: "Este campo é obrigatório!",
           })}
         />
+        {/* {errors.cep?.message} */}
 
         <input
           id='street'
           placeholder='Rua'
-          {...register('street', {
-            required: true,
-          })}
+          {...register('street')}
         />
 
         <div>
           <input
             id='number'
             placeholder='Número'
-            {...register('street', {
-              required: true,
-              maxLength: 4
-            })}
+            type='number'
+            min={1}
+            {...register('number')}
           />
           <input
             id='complement'
             placeholder='Complemento'
-            {...register('complement', {
-              required: false,
-            })}
+            {...register('complement')}
           />
         </div>
 
@@ -63,25 +57,17 @@ const Address: React.FC = () => {
           <input
             id='district'
             placeholder='Bairro'
-            {...register('district', {
-              required: true,
-            })}
+            {...register('district')}
           />
           <input
             id='city'
             placeholder='Cidade'
-            {...register('city', {
-              required: true,
-            })}
+            {...register('city')}
           />
           <input
             id='uf'
             placeholder='UF'
-            {...register('uf', {
-              required: true,
-              maxLength: 2,
-              minLength: 2
-            })}
+            {...register('uf')}
           />
         </div>
       </Card>
