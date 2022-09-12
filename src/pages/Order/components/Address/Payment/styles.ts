@@ -13,28 +13,53 @@ export const PaymentContainer = styled.div`
   flex-direction: column;
 
   gap: 1rem 0;
+`
 
-  >div:last-child {
-    display: flex;
-    justify-content: space-between;
+export const RadioButtons = styled.div`
+  display: flex;
+  justify-content: space-between;
+`
 
-    button {
-      width: 32%;
-      height: 3rem;
-      font-size: 14px;
+const RADIO_BUTTON_COLORS = {
+  default: 'button',
+  hover: 'purple-200',
+} as const
 
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 4px;
+const RADIO_BUTTON_BORDERS = {
+  default: 'button',
+  hover: 'purple-500'
+} as const
 
-      border: 0px;
-      background: ${props => props.theme.button};
-      border-radius: 8px;
-      cursor: pointer;
-    }
+interface RadioButtonProps {
+  background: keyof typeof RADIO_BUTTON_COLORS
+  border: keyof typeof RADIO_BUTTON_BORDERS
+}
+
+export const RadioButton = styled.label<RadioButtonProps>`
+  width: 40px;
+
+  width: 32%;
+  height: 3rem;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  transition: all 0.2s;
+
+  border: ${props => props.theme[RADIO_BUTTON_BORDERS[props.border]]} 0.8px solid;
+  background: ${props => props.theme[RADIO_BUTTON_COLORS[props.background]]};
+  border-radius: 8px;
+  cursor: pointer;
+
+  input {
+    -webkit-appearance: none;
+    appearance: none;
+    background-color: #fff;
+    margin: 0;
   }
 `
+
 
 export const Header = styled.div`
   display: flex;

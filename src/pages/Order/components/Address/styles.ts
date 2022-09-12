@@ -92,3 +92,6 @@ export const Title = styled.h3`
   font-size: 20px;
   text-shadow: 1px 1px rgba(0, 0, 0, 0.3);
 `
+
+export const ErrorAlert = styled.div`
+`
